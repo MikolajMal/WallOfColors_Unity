@@ -5,7 +5,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static int gameDifficulty=0;
-    public static float levelSize = 2;
+    public static float levelSize = 6;
+    public static bool boardRotationAllowed = true;
 
     static List<Color> availableColors { get; set; } = new List<Color>
     {

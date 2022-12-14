@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class WallOfColorsSetup : BlocksSetup
@@ -14,6 +15,8 @@ public class WallOfColorsSetup : BlocksSetup
         {
             GameObject squareObj = Instantiate(square, new Vector3(i, transform.position.y), Quaternion.identity);
             squareObj.transform.parent = transform;
+            squareObj.tag = "MovableBlock";
+            squareObj.AddComponent<BlockShooter>();
         }
     }
 }
