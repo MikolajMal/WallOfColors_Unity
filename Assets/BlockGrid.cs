@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class BlockGrid : BlocksSetup
 {
-    int numberOfSquares = 10;
+    int numberOfSquares = 50;
     List<Vector2> occupiedTiles = new List<Vector2>();
 
     private void Start()
