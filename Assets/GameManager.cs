@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static int gameDifficulty=0;
     public static float levelSize = 6;
-    public static bool boardRotationAllowed = true;
+    public static bool actionsNotBlocked = true;
 
     static List<Color> availableColors { get; set; } = new List<Color>
     {

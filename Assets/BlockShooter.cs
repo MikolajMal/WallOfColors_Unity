@@ -32,7 +32,7 @@ public class BlockShooter : MonoBehaviour
     {
         if (blockClicked)
         {
-            GameManager.boardRotationAllowed = false;
+            GameManager.actionsNotBlocked = false;
 
             transform.Translate(Vector3.up * Time.deltaTime * speed);
             RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector3.up, checkingRayLength);
@@ -41,6 +41,8 @@ public class BlockShooter : MonoBehaviour
                 if (hit.transform.CompareTag("StaticBlock"))
                 {
                     BlockSetting(hit);
+
+                    GameManager.actionsNotBlocked = true;
 
                     CheckingForMatches();
                 }
@@ -141,13 +143,12 @@ public class BlockShooter : MonoBehaviour
         //blockCollider.enabled = true;
         this.tag = "StaticBlock";
         transform.parent = hit.transform.parent;
-        GameManager.boardRotationAllowed = true;
         Destroy(this);
     }
 
     private void OnMouseDown()
     {
-        if (blockClicked) return;
+        if (blockClicked || !GameManager.actionsNotBlocked) return;
 
         blockCollider.enabled = false;
 
