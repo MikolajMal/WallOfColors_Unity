@@ -15,6 +15,8 @@ public class BlockShooter : MonoBehaviour
 
     int newBlocksInMatchingList = 0;
 
+    public WallOfColorsSetup wallOfColorsSetupScript;
+
     void Start()
     {
         blockClicked = false;
@@ -57,12 +59,12 @@ public class BlockShooter : MonoBehaviour
     {
         List<Block> matchingBlocks = new List<Block>();
 
-        
+
 
         CheckAllDirections(transform.position, matchingBlocks);
 
         int matchingBlocksCount = matchingBlocks.Count;
-        
+
 
         while (newBlocksInMatchingList != 0)
         {
@@ -157,6 +159,10 @@ public class BlockShooter : MonoBehaviour
 
         if (hitNear) blockCollider.enabled = true;
         else if (!hitFar) blockCollider.enabled = true;
-        else if (!hitNear && hitFar) blockClicked = true;
+        else if (!hitNear && hitFar && wallOfColorsSetupScript != null)
+        {
+            blockClicked = true;
+            wallOfColorsSetupScript.UpdateColumn(this.gameObject);
+        }
     }
 }
