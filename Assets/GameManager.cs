@@ -1,12 +1,31 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using TMPro;
+
 
 public class GameManager : MonoBehaviour
 {
-    public static int gameDifficulty=0;
+    public static int gameDifficulty = 0;
     public static float levelSize = 6;
     public static bool actionsNotBlocked = true;
+
+    static int score;
+    public static int Score
+    {
+        get
+        {
+            return score;
+        }
+        set
+        {
+            score = value;
+            staticScoreText.text = "Score: " + score;
+        }
+    }
+
+    public TMP_Text scoreText;
+    static TMP_Text staticScoreText;
 
     static List<Color> availableColors { get; set; } = new List<Color>
     {
@@ -25,6 +44,9 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         SetCurrentColors();
+        score = 0;
+        scoreText.text = "Score: " + score;
+        staticScoreText = scoreText;
     }
     public static void SetCurrentColors()
     {

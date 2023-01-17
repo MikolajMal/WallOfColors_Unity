@@ -8,7 +8,7 @@ public class BlockShooter : MonoBehaviour
 {
     bool blockClicked;
     Collider2D blockCollider;
-    float speed = 4f;
+    float speed = 20f;
     float checkingRayLength = .6f;
     Block blockScript;
     Color currentColor;
@@ -57,15 +57,12 @@ public class BlockShooter : MonoBehaviour
     /// </summary>
     void CheckingForMatches()
     {
+        // Searching matching blocks around shooted block
         List<Block> matchingBlocks = new List<Block>();
-
-
-
         CheckAllDirections(transform.position, matchingBlocks);
-
         int matchingBlocksCount = matchingBlocks.Count;
 
-
+        // Searching for further matching blocks
         while (newBlocksInMatchingList != 0)
         {
             newBlocksInMatchingList = 0;
@@ -81,12 +78,10 @@ public class BlockShooter : MonoBehaviour
             }
         }
 
-
-        // TO DO: make checking for all matching blocks
-
+        // Checking if there are more then one matching block to the shooted block
         if (matchingBlocksCount > 1)
         {
-            //Debug.Log("Zaczynamy usuwanie!");
+            CalculateScore(matchingBlocksCount);
             for (int i = matchingBlocksCount - 1; i >= 0; i--)
             {
                 GameObject block = matchingBlocks[i].gameObject;
@@ -106,6 +101,12 @@ public class BlockShooter : MonoBehaviour
 
         blockCollider.enabled = true;
         blockScript.isMarkedAsMatching = false;
+    }
+
+    void CalculateScore(int matchingBlocksCount)
+    {
+        int newScore = (matchingBlocksCount * matchingBlocksCount) - 1;
+        GameManager.Score += newScore;
     }
 
     /// <summary>
