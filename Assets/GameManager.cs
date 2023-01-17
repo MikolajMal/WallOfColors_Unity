@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
 
         currentColors = gameDifficulty switch
         {
-            0 => availableColors.Take(2).ToList(),
+            0 => availableColors.Take(4).ToList(),
             1 => availableColors.Take(5).ToList(),
             2 => availableColors.Take(6).ToList(),
             3 => availableColors.Take(7).ToList(),
