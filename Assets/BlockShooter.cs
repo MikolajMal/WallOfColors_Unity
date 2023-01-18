@@ -166,4 +166,14 @@ public class BlockShooter : MonoBehaviour
             wallOfColorsSetupScript.UpdateColumn(this.gameObject);
         }
     }
+
+    private void OnMouseEnter()
+    {
+        Debug.Log("Showing aiming path");
+    }
+
+    private void OnMouseExit()
+    {
+        Debug.Log("Hiding aiming path");
+    }
 }

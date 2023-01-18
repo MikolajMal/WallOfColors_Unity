@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BlocksSetup : MonoBehaviour
 {
-    protected float levelSize = GameManager.levelSize;
+    protected int levelSize = GameManager.levelSize;
     protected float blockSize = 1f;
     public GameObject square;
 

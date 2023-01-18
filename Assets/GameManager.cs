@@ -7,7 +7,7 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     public static int gameDifficulty = 0;
-    public static float levelSize = 6;
+    public static int levelSize = 6;
     public static bool actionsNotBlocked = true;
 
     static int score;
@@ -54,10 +54,11 @@ public class GameManager : MonoBehaviour
 
         currentColors = gameDifficulty switch
         {
-            0 => availableColors.Take(4).ToList(),
-            1 => availableColors.Take(5).ToList(),
-            2 => availableColors.Take(6).ToList(),
-            3 => availableColors.Take(7).ToList(),
+            0 => availableColors.Take(3).ToList(),
+            1 => availableColors.Take(4).ToList(),
+            2 => availableColors.Take(5).ToList(),
+            3 => availableColors.Take(6).ToList(),
+            4 => availableColors.Take(7).ToList(),
             _ => throw new System.NotImplementedException(),
         };
     }
