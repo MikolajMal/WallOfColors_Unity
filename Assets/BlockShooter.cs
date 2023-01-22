@@ -170,10 +170,12 @@ public class BlockShooter : MonoBehaviour
     private void OnMouseEnter()
     {
         Debug.Log("Showing aiming path");
+        BlockPathPreview.Instance.ShowPathPreview(this.gameObject);
     }
 
     private void OnMouseExit()
     {
         Debug.Log("Hiding aiming path");
+        BlockPathPreview.Instance.HidePathPreview(this.gameObject);
     }
 }
