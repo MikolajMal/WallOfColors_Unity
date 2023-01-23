@@ -40,15 +40,11 @@ public class BlockPathPreview : MonoBehaviour
         for (int i = 0; i < maxShadowsAmount; i++)
         {
             GameObject blockShadowInstantiated = Instantiate(blockShadow, transform.position + (Vector3.up * i), Quaternion.identity);
-            blockShadowInstantiated.transform.parent= transform;
+            blockShadowInstantiated.transform.parent = transform;
             blocksShadows.Add(blockShadowInstantiated);
             SpriteRenderer spriteRenderer = blockShadowInstantiated.GetComponent<SpriteRenderer>();
             spriteRenderer.color = new Color(1, 1, 1, 0.2f);
             blocksShadowsSprites.Add(spriteRenderer);
-
-            // TO DO: Overriding color of the selected block 
-            Debug.Log(blockShadowInstantiated.GetComponent<SpriteRenderer>().color);
-            // TO DO: At the beginning the path is not enabled
 
             // TO DO: Object pooling
 
@@ -60,10 +56,22 @@ public class BlockPathPreview : MonoBehaviour
     public void ShowPathPreview(GameObject selectedBlock)
     {
         transform.position = new Vector3(selectedBlock.transform.position.x, transform.position.y);
-        SetVisability(true);
+
+        int positionDifference = -1;
+
+        // TO DO: checking how many blocks shadows should be displayed
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector3.up);
+        if (hit)
+        {
+            Vector2 foundBlockPosition = hit.transform.position;
+            positionDifference = (int)hit.transform.position.y - (int)transform.position.y;
+        }
+
+        Debug.Log(positionDifference);
+
+        SetVisability(true, positionDifference);
         Color selectedColor = selectedBlock.GetComponent<SpriteRenderer>().color;
         SetColor(selectedColor);
-        // TO DO: Overriding color of the selected block 
     }
 
     public void HidePathPreview(GameObject selectedBlock)
@@ -71,11 +79,21 @@ public class BlockPathPreview : MonoBehaviour
         SetVisability(false);
     }
 
-    void SetVisability(bool setActive)
+    void SetVisability(bool setActive, int numberOfBlocks = -1)
     {
-        foreach (GameObject shadow in blocksShadows)
+        if (numberOfBlocks == -1)
         {
-            shadow.SetActive(setActive);
+            foreach (GameObject shadow in blocksShadows)
+            {
+                shadow.SetActive(setActive);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < numberOfBlocks; i++)
+            {
+                blocksShadows[i].SetActive(setActive);
+            }
         }
     }
 
@@ -85,7 +103,7 @@ public class BlockPathPreview : MonoBehaviour
 
         foreach (SpriteRenderer shadowRenderer in blocksShadowsSprites)
         {
-            shadowRenderer.color= newColor;
+            shadowRenderer.color = newColor;
         }
     }
 }
