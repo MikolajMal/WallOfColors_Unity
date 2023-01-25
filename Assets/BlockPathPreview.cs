@@ -59,15 +59,16 @@ public class BlockPathPreview : MonoBehaviour
 
         int positionDifference = -1;
 
-        // TO DO: checking how many blocks shadows should be displayed
+        // Checking how many blocks shadows should be displayed
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector3.up);
         if (hit)
         {
             Vector2 foundBlockPosition = hit.transform.position;
-            positionDifference = (int)hit.transform.position.y - (int)transform.position.y;
+            positionDifference = Mathf.RoundToInt(hit.transform.position.y) - Mathf.RoundToInt(transform.position.y);
+            //Debug.Log(hit.transform.gameObject.transform.position.y + "            " + hit.transform.position.y);
         }
 
-        Debug.Log(positionDifference);
+        //Debug.Log("positionDifference: " + positionDifference);
 
         SetVisability(true, positionDifference);
         Color selectedColor = selectedBlock.GetComponent<SpriteRenderer>().color;
