@@ -302,6 +302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   square: {fileID: 4309870238872152695, guid: 9d2f29f107ea900458839abe8385bb9e, type: 3}
+  numberOfSquares: 5
 --- !u!4 &293721812
 Transform:
   m_ObjectHideFlags: 0
@@ -1312,6 +1313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b69e957b0f43d4a42836889dfc63dc54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blockGrid: {fileID: 293721812}
   scoreText: {fileID: 1798603771}
 --- !u!4 &2109131154
 Transform:

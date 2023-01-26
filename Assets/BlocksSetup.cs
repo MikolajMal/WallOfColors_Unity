@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class BlocksSetup : MonoBehaviour
 {
-    protected int levelSize = GameManager.levelSize;
+    protected int levelSize;// = GameManager.Instance.levelSize;
     protected float blockSize = 1f;
     public GameObject square;
+
+    protected virtual void Start()
+    {
+        levelSize = GameManager.Instance.levelSize;
+    }
 
     protected void SetSquareSize()
     {

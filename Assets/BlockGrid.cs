@@ -3,11 +3,14 @@ using UnityEngine;
 
 public class BlockGrid : BlocksSetup
 {
-    int numberOfSquares = 50;
+    public int numberOfSquares = 5;
+
     List<Vector2> occupiedTiles = new List<Vector2>();
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
+
         SetSquareSize();
 
         for (int i = 0; i < numberOfSquares; i++)
@@ -24,8 +27,13 @@ public class BlockGrid : BlocksSetup
             occupiedTiles.Add(currentPosition);
             GameObject squareObj = Instantiate(square, new Vector3(currentPosition.x, currentPosition.y), Quaternion.identity);
             squareObj.transform.parent = transform;
-            
+
 
         }
+    }
+
+    private void Update()
+    {
+        if (transform.childCount == 0 && !GameManager.Instance.GameOver) GameManager.Instance.GameOver = true;
     }
 }

@@ -2,25 +2,57 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using TMPro;
-
+using System;
 
 public class GameManager : MonoBehaviour
 {
-    public static int gameDifficulty = 0;
-    public static int levelSize = 6;
-    public static bool actionsNotBlocked = true;
+    #region Singleton
 
-    static int score;
-    public static int Score
+    public static GameManager Instance;
+
+    private void Awake()
     {
-        get
+        if (Instance != null && Instance != this)
         {
-            return score;
+            Destroy(this);
+            return;
         }
+        Instance = this;
+
+        SetCurrentColors();
+        score = 0;
+        scoreText.text = "Score: " + score;
+        staticScoreText = scoreText;
+    }
+
+    #endregion
+
+    public int gameDifficulty = 0;
+    public int levelSize = 6;
+    public bool actionsNotBlocked = true;
+
+    [SerializeField]
+    Transform blockGrid;
+
+    int score;
+    public int Score
+    {
+        get => score;
         set
         {
             score = value;
             staticScoreText.text = "Score: " + score;
+        }
+    }
+
+    bool gameOver;
+    public bool GameOver
+    {
+        get => gameOver;
+        set
+        {
+            gameOver = value;
+            LevelFinished();
         }
     }
 
@@ -41,26 +73,25 @@ public class GameManager : MonoBehaviour
 
     public static List<Color> currentColors = new List<Color>();
 
-    private void Awake()
-    {
-        SetCurrentColors();
-        score = 0;
-        scoreText.text = "Score: " + score;
-        staticScoreText = scoreText;
-    }
-    public static void SetCurrentColors()
+    public void SetCurrentColors()
     {
         currentColors.Clear();
 
         currentColors = gameDifficulty switch
         {
-            0 => availableColors.Take(3).ToList(),
-            1 => availableColors.Take(4).ToList(),
-            2 => availableColors.Take(5).ToList(),
-            3 => availableColors.Take(6).ToList(),
-            4 => availableColors.Take(7).ToList(),
+            0 => availableColors.Take(2).ToList(),
+            1 => availableColors.Take(3).ToList(),
+            2 => availableColors.Take(4).ToList(),
+            3 => availableColors.Take(5).ToList(),
+            4 => availableColors.Take(6).ToList(),
+            5 => availableColors.Take(7).ToList(),
             _ => throw new System.NotImplementedException(),
         };
+    }
+
+    void LevelFinished()
+    {
+        Debug.Log("Level completed!");
     }
 }
 

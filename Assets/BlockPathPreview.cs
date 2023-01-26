@@ -31,12 +31,12 @@ public class BlockPathPreview : MonoBehaviour
     void Start()
     {
 
-        startPosition = GameManager.levelSize;
+        startPosition = GameManager.Instance.levelSize;
 
         transform.position = Vector3.down * startPosition;
 
         // Actual size of the level because GameManager.levelSize is the max size from the 0 including +/-GameManager.levelSize
-        maxShadowsAmount = (GameManager.levelSize * 2) + 1;
+        maxShadowsAmount = (GameManager.Instance.levelSize * 2) + 1;
         for (int i = 0; i < maxShadowsAmount; i++)
         {
             GameObject blockShadowInstantiated = Instantiate(blockShadow, transform.position + (Vector3.up * i), Quaternion.identity);

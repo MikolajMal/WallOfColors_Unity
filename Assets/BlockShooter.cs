@@ -34,7 +34,7 @@ public class BlockShooter : MonoBehaviour
     {
         if (blockClicked)
         {
-            GameManager.actionsNotBlocked = false;
+            GameManager.Instance.actionsNotBlocked = false;
 
             transform.Translate(Vector3.up * Time.deltaTime * speed);
             RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector3.up, checkingRayLength);
@@ -44,7 +44,7 @@ public class BlockShooter : MonoBehaviour
                 {
                     BlockSetting(hit);
 
-                    GameManager.actionsNotBlocked = true;
+                    GameManager.Instance.actionsNotBlocked = true;
 
                     CheckingForMatches();
                 }
@@ -81,7 +81,6 @@ public class BlockShooter : MonoBehaviour
         // Checking if there are more then one matching block to the shooted block
         if (matchingBlocksCount > 1)
         {
-            CalculateScore(matchingBlocksCount);
             for (int i = matchingBlocksCount - 1; i >= 0; i--)
             {
                 GameObject block = matchingBlocks[i].gameObject;
@@ -91,6 +90,8 @@ public class BlockShooter : MonoBehaviour
 
             // Update preview path when blocks are destroyed
             BlockPathPreview.Instance.ShowPathPreview(this.gameObject);
+
+            CalculateScore(matchingBlocksCount);
 
             Destroy(this.gameObject);
             return;
@@ -110,7 +111,7 @@ public class BlockShooter : MonoBehaviour
     void CalculateScore(int matchingBlocksCount)
     {
         int newScore = (matchingBlocksCount * matchingBlocksCount) - 1;
-        GameManager.Score += newScore;
+        GameManager.Instance.Score += newScore;
     }
 
     /// <summary>
@@ -155,7 +156,7 @@ public class BlockShooter : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (blockClicked || !GameManager.actionsNotBlocked) return;
+        if (blockClicked || !GameManager.Instance.actionsNotBlocked) return;
 
         blockCollider.enabled = false;
 
