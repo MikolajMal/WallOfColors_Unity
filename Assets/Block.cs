@@ -9,7 +9,7 @@ public class Block : MonoBehaviour
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        color = GameManager.currentColors[Random.Range(0, GameManager.currentColors.Count)];
+        color = GameManager.Instance.currentColors[Random.Range(0, GameManager.Instance.currentColors.Count)];
         spriteRenderer.color = color;
     }
 }

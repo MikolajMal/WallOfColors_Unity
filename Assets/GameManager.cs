@@ -22,7 +22,6 @@ public class GameManager : MonoBehaviour
         SetCurrentColors();
         score = 0;
         scoreText.text = "Score: " + score;
-        staticScoreText = scoreText;
     }
 
     #endregion
@@ -41,7 +40,7 @@ public class GameManager : MonoBehaviour
         set
         {
             score = value;
-            staticScoreText.text = "Score: " + score;
+            scoreText.text = "Score: " + score;
         }
     }
 
@@ -57,9 +56,8 @@ public class GameManager : MonoBehaviour
     }
 
     public TMP_Text scoreText;
-    static TMP_Text staticScoreText;
 
-    static List<Color> availableColors { get; set; } = new List<Color>
+    List<Color> availableColors { get; set; } = new List<Color>
     {
         Color.red,
         Color.green,
@@ -71,7 +69,7 @@ public class GameManager : MonoBehaviour
     };
 
 
-    public static List<Color> currentColors = new List<Color>();
+    public List<Color> currentColors = new List<Color>();
 
     public void SetCurrentColors()
     {
