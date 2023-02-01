@@ -22,7 +22,7 @@ public class WallOfColorsSetup : BlocksSetup
             for (int j = 0; j < 3; j++)
             {
                 GameObject squareObj = Instantiate(square, new Vector3(i, transform.position.y - j), Quaternion.identity);
-                squareObj.transform.parent = transform;
+                squareObj.transform.parent = transform.GetChild(GameManager.Instance.gameDifficulty);
                 if (j == 0) SetupFirstElementInColumn(squareObj);
                 column.Add(squareObj);
             }
