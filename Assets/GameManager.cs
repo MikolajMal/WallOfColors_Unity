@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
         }
         Instance = this;
 
-        SetCurrentColors();
+        SetCurrentColors(gameDifficulty);
         score = 0;
         scoreText.text = "Score: " + score;
     }
@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour
 
     public List<Color> currentColors = new List<Color>();
 
-    public void SetCurrentColors()
+    public void SetCurrentColors(int gameDifficulty)
     {
         currentColors.Clear();
 

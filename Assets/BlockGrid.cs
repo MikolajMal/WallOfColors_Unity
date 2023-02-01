@@ -7,9 +7,8 @@ public class BlockGrid : BlocksSetup
 
     List<Vector2> occupiedTiles = new List<Vector2>();
 
-    protected override void Start()
+    public void SetupGrid()
     {
-        base.Start();
 
         SetSquareSize();
 

@@ -8,7 +8,7 @@ public class BlocksSetup : MonoBehaviour
     protected float blockSize = 1f;
     public GameObject square;
 
-    protected virtual void Start()
+    void Start()
     {
         levelSize = GameManager.Instance.levelSize;
     }

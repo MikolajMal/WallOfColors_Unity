@@ -6,10 +6,9 @@ public class WallOfColorsSetup : BlocksSetup
 {
     List<List<GameObject>> wallOfColors = new List<List<GameObject>>();
 
-    protected override void Start()
+    public void SetupWall()
     {
-        base.Start();
-
+        transform.position = Vector3.zero;
         transform.Translate(-Vector3.up * (levelSize + 1));
 
         SetSquareSize();
