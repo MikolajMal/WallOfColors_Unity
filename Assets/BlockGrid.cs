@@ -9,7 +9,6 @@ public class BlockGrid : BlocksSetup
 
     public void SetupGrid()
     {
-        Debug.Log("Here is ok");
         SetSquareSize();
 
         for (int i = 0; i < numberOfSquares; i++)
@@ -22,10 +21,8 @@ public class BlockGrid : BlocksSetup
 
                 currentPosition = new Vector2(height, width);
             } while (occupiedTiles.Contains(currentPosition));
-            Debug.Log("Here is ok");
             occupiedTiles.Add(currentPosition);
             GameObject squareObj = Instantiate(square, new Vector3(currentPosition.x, currentPosition.y), Quaternion.identity);
-            Debug.Log("Here is ok");
             squareObj.transform.parent = transform.GetChild(GameManager.Instance.gameDifficulty);// difficultyBoardPlaceHolder[GameManager.Instance.gameDifficulty];
 
 

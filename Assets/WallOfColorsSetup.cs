@@ -60,7 +60,7 @@ public class WallOfColorsSetup : BlocksSetup
         
         // Creating new block
         GameObject newColorBlock = Instantiate(square, columnToUpdate[1].transform.position, Quaternion.identity);
-        newColorBlock.transform.parent = transform;
+        newColorBlock.transform.parent = transform.GetChild(GameManager.Instance.gameDifficulty);
         columnToUpdate.Add(newColorBlock);
 
         // Updating positions for old blocks
