@@ -17,7 +17,7 @@ public class BoardReset : MonoBehaviour
         {
             if (IsBoardEmpty(GameManager.Instance.gameDifficulty))
             {
-                blockGrid.SetupGrid();
+                blockGrid.SetupGrid(true);
             }
         }
     }

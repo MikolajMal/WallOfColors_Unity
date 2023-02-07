@@ -3,13 +3,31 @@ using UnityEngine;
 
 public class BlockGrid : BlocksSetup
 {
-    public int numberOfSquares = 5;
+    public int initialNumberOfSquares = 5;
 
     List<Vector2> occupiedTiles = new List<Vector2>();
+
+    Dictionary<int, int> numberOfBlocksOnLevel = new Dictionary<int, int>();
+
+    protected override void Start()
+    {
+        base.Start();
+
+        numberOfBlocksOnLevel.Clear();
+
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            numberOfBlocksOnLevel.Add(i, initialNumberOfSquares);
+        }
+    }
 
     public void SetupGrid(bool increaseBlocksAmount = false)
     {
         SetSquareSize();
+
+        if (increaseBlocksAmount) numberOfBlocksOnLevel[GameManager.Instance.gameDifficulty]++;
+
+        int numberOfSquares = numberOfBlocksOnLevel[GameManager.Instance.gameDifficulty];
 
         for (int i = 0; i < numberOfSquares; i++)
         {

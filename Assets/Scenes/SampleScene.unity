@@ -4175,6 +4175,7 @@ MonoBehaviour:
   gameDifficulty: 0
   levelSize: 6
   actionsNotBlocked: 1
+  gameIsPlaying: 0
   blockGrid: {fileID: 293721812}
   scoreText: {fileID: 1798603771}
   currentColors: []
