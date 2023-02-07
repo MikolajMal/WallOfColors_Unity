@@ -24,7 +24,9 @@ public class GameSave : MonoBehaviour
 
     public void SaveGameLocally()
     {
-        
+        GameManager.Instance.gameIsPlaying = false;
+
+
         int actualGameDifficulty = GameManager.Instance.gameDifficulty;
 
         // Saving blocks in wall
@@ -63,6 +65,7 @@ public class GameSave : MonoBehaviour
             GameManager.Instance.Score = 0;
         }
 
+        GameManager.Instance.gameIsPlaying = true;
     }
 
     private void ClearBoard()

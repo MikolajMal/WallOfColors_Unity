@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     public int gameDifficulty = 0;
     public int levelSize = 6;
     public bool actionsNotBlocked = true;
+    public bool gameIsPlaying = false;
 
     [SerializeField]
     Transform blockGrid;

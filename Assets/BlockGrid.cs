@@ -7,7 +7,7 @@ public class BlockGrid : BlocksSetup
 
     List<Vector2> occupiedTiles = new List<Vector2>();
 
-    public void SetupGrid()
+    public void SetupGrid(bool increaseBlocksAmount = false)
     {
         SetSquareSize();
 
