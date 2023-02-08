@@ -4,6 +4,7 @@ using UnityEngine;
 public class BlockGrid : BlocksSetup
 {
     public int initialNumberOfSquares = 5;
+    public int increaseAmountNumberOfSquares = 5;
 
     List<Vector2> occupiedTiles = new List<Vector2>();
 
@@ -25,17 +26,23 @@ public class BlockGrid : BlocksSetup
     {
         SetSquareSize();
 
-        if (increaseBlocksAmount) numberOfBlocksOnLevel[GameManager.Instance.gameDifficulty]++;
+        occupiedTiles.Clear();
 
-        int numberOfSquares = numberOfBlocksOnLevel[GameManager.Instance.gameDifficulty];
+        int numberOfSquares;
+
+        if (increaseBlocksAmount) numberOfBlocksOnLevel[GameManager.Instance.gameDifficulty] += increaseAmountNumberOfSquares;
+        else numberOfBlocksOnLevel[GameManager.Instance.gameDifficulty] = increaseAmountNumberOfSquares;
+
+        numberOfSquares = numberOfBlocksOnLevel[GameManager.Instance.gameDifficulty];
+
 
         for (int i = 0; i < numberOfSquares; i++)
         {
             Vector2 currentPosition;
             do
             {
-                int height = Mathf.RoundToInt(Random.Range(-levelSize, levelSize));
-                int width = Mathf.RoundToInt(Random.Range(-levelSize, levelSize));
+                int height = Mathf.RoundToInt(Random.Range(-levelSize, levelSize + 1));
+                int width = Mathf.RoundToInt(Random.Range(-levelSize, levelSize + 1));
 
                 currentPosition = new Vector2(height, width);
             } while (occupiedTiles.Contains(currentPosition));
@@ -45,10 +52,5 @@ public class BlockGrid : BlocksSetup
 
 
         }
-    }
-
-    private void Update()
-    {
-        if (transform.childCount == 0 && !GameManager.Instance.GameOver) GameManager.Instance.GameOver = true;
     }
 }
