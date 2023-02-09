@@ -53,7 +53,7 @@ public class BlockPathPreview : MonoBehaviour
         SetVisability(false);
     }
 
-    public void ShowPathPreview(GameObject selectedBlock)
+    public void ShowPathPreview(GameObject selectedBlock, bool showPreview = true)
     {
         transform.position = new Vector3(selectedBlock.transform.position.x, transform.position.y);
 
@@ -70,7 +70,7 @@ public class BlockPathPreview : MonoBehaviour
 
         //Debug.Log("positionDifference: " + positionDifference);
 
-        SetVisability(true, positionDifference);
+        SetVisability(showPreview, positionDifference);
         Color selectedColor = selectedBlock.GetComponent<SpriteRenderer>().color;
         SetColor(selectedColor);
     }

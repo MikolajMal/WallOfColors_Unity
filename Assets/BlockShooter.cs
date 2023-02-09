@@ -89,7 +89,7 @@ public class BlockShooter : MonoBehaviour
             }
 
             // Update preview path when blocks are destroyed
-            BlockPathPreview.Instance.ShowPathPreview(this.gameObject);
+            BlockPathPreview.Instance.ShowPathPreview(this.gameObject, false);
 
             CalculateScore(matchingBlocksCount);
 
