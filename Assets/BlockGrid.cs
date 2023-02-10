@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class BlockGrid : BlocksSetup
 {
-    public int initialNumberOfSquares = 5;
     public int increaseAmountNumberOfSquares = 5;
 
     List<Vector2> occupiedTiles = new List<Vector2>();
@@ -18,7 +17,7 @@ public class BlockGrid : BlocksSetup
 
         for (int i = 0; i < transform.childCount; i++)
         {
-            numberOfBlocksOnLevel.Add(i, initialNumberOfSquares);
+            numberOfBlocksOnLevel.Add(i, increaseAmountNumberOfSquares);
         }
     }
 

@@ -34,7 +34,7 @@ public class BlockShooter : MonoBehaviour
     {
         if (blockClicked)
         {
-            GameManager.Instance.actionsNotBlocked = false;
+            GameManager.Instance.ActionsNotBlocked = false;
 
             transform.Translate(Vector3.up * Time.deltaTime * speed);
             RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector3.up, checkingRayLength);
@@ -44,9 +44,9 @@ public class BlockShooter : MonoBehaviour
                 {
                     BlockSetting(hit);
 
-                    GameManager.Instance.actionsNotBlocked = true;
-
                     CheckingForMatches();
+
+                    GameManager.Instance.ActionsNotBlocked = true;
                 }
             }
         }
@@ -156,7 +156,7 @@ public class BlockShooter : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (blockClicked || !GameManager.Instance.actionsNotBlocked) return;
+        if (blockClicked || !GameManager.Instance.ActionsNotBlocked) return;
 
         blockCollider.enabled = false;
 

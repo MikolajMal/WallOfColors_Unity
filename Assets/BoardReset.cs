@@ -32,6 +32,8 @@ public class BoardReset : MonoBehaviour
         ClearBoard();
 
         blockGrid.SetupGrid();
+
+        GameManager.Instance.ActionsNotBlocked = true;
     }
 
     void ClearBoard()
