@@ -33,8 +33,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     Transform blockGrid;
+    [SerializeField]
+    HighScore highScore;
 
-    //
     bool actionsNotBlocked = true;
     public bool ActionsNotBlocked
     {
@@ -57,6 +58,7 @@ public class GameManager : MonoBehaviour
         {
             score = value;
             scoreText.text = "Score: " + score;
+            highScore.CheckHighScore(score);
         }
     }
 

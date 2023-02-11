@@ -18,6 +18,8 @@ public class GameSave : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("TODO: all difficulty levels as scriptable objects...");
+
         wallOfColorsSetup = wall.GetComponent<WallOfColorsSetup>();
         blockGrid = grid.GetComponent<BlockGrid>();
     }
