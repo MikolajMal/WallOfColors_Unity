@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
         set
         {
             score = value;
-            scoreText.text = "Score: " + score;
+            scoreText.text = score.ToString();
             highScore.CheckHighScore(score);
         }
     }
