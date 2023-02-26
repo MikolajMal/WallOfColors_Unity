@@ -3247,7 +3247,6 @@ GameObject:
   - component: {fileID: 1511682987}
   - component: {fileID: 1511682989}
   - component: {fileID: 1511682988}
-  - component: {fileID: 1511682990}
   m_Layer: 5
   m_Name: HighScoreValue
   m_TagString: Untagged
@@ -3372,19 +3371,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1511682986}
   m_CullTransparentMesh: 1
---- !u!114 &1511682990
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1511682986}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30b9c2a7abb84434abe496f6b191ae0d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  highScoreText: {fileID: 1511682988}
 --- !u!1 &1526490988
 GameObject:
   m_ObjectHideFlags: 0
@@ -5000,6 +4986,7 @@ GameObject:
   - component: {fileID: 2109131155}
   - component: {fileID: 2109131156}
   - component: {fileID: 2109131157}
+  - component: {fileID: 2109131158}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -5024,9 +5011,7 @@ MonoBehaviour:
   gameIsPlaying: 0
   blockGrid: {fileID: 293721812}
   highScore: {fileID: 2109131157}
-  scoreText: {fileID: 62995461}
-  difficulties:
-  - {fileID: 11400000, guid: b995ea0b168333749afe5d966d721e3f, type: 2}
+  score: {fileID: 2109131158}
   currentColors: []
 --- !u!4 &2109131154
 Transform:
@@ -5070,7 +5055,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wall: {fileID: 491922028}
   grid: {fileID: 293721812}
-  highScoreScript: {fileID: 2109131157}
+  scoreScript: {fileID: 2109131158}
 --- !u!114 &2109131157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5083,3 +5068,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f747ac8fb7fac9d499800b4ce005425a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  highScoreText: {fileID: 1511682988}
+--- !u!114 &2109131158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2109131152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4529fc547e3c7940946db1242c0d198, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreText: {fileID: 62995461}

@@ -21,8 +21,7 @@ public class GameManager : MonoBehaviour
         Instance = this;
 
         SetCurrentColors();
-        score = 0;
-        scoreText.text = "Score: " + score;
+        score.CurrentScore = 0;
     }
 
     #endregion
@@ -30,6 +29,13 @@ public class GameManager : MonoBehaviour
     public int gameDifficulty = 0;
     public int levelSize = 6;
     public bool gameIsPlaying = false;
+
+    [SerializeField]
+    Transform blockGrid;
+    [SerializeField]
+    HighScore highScore;
+    [SerializeField]
+    Score score;
 
     #region Properties
     bool actionsNotBlocked = true;
@@ -46,15 +52,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    int score;
     public int Score
     {
-        get => score;
+        get => score.CurrentScore;
         set
         {
-            score = value;
-            scoreText.text = score.ToString();
-            highScore.CheckHighScore(score);
+            score.CurrentScore = value;
+            highScore.CheckHighScore(score.CurrentScore);
+            score.UpdateScoreText(score.CurrentScore);
         }
     }
 
@@ -70,15 +75,6 @@ public class GameManager : MonoBehaviour
     }
 
     #endregion
-
-    [SerializeField]
-    Transform blockGrid;
-    [SerializeField]
-    HighScore highScore;
-
-    public TMP_Text scoreText;
-
-    public List<ScriptableObject> difficulties = new List<ScriptableObject>();
 
     public void UpdateGameDifficulty(int newGameDifficulty)
     {

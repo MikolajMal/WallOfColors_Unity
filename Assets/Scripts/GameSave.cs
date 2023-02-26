@@ -13,7 +13,7 @@ public class GameSave : MonoBehaviour
     BlockGrid blockGrid;
 
     [SerializeField]
-    HighScore highScoreScript;
+    Score scoreScript;
 
     Dictionary<int, GameObject> savedWalls = new Dictionary<int, GameObject>();
     Dictionary<int, GameObject> savedGrids = new Dictionary<int, GameObject>();
