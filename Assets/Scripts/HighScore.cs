@@ -1,13 +1,38 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class HighScore : MonoBehaviour
 {
     Dictionary<int, int> highScores = new Dictionary<int, int>();
 
     public static Action<int> onHighScoreChanges;
+
+    public int CurrentHighScore
+    {
+        get
+        {
+            int currentDifficulty = GameManager.Instance.gameDifficulty;
+            if (!highScores.ContainsKey(currentDifficulty)) highScores.Add(currentDifficulty, 0);
+            return highScores[currentDifficulty];
+        }
+        set
+        {
+            int currentDifficulty = GameManager.Instance.gameDifficulty;
+            if (highScores.ContainsKey(currentDifficulty))
+            {
+                highScores[GameManager.Instance.gameDifficulty] = value;
+            }
+            else
+            {
+                highScores.Add(currentDifficulty, value);
+                onHighScoreChanges?.Invoke(value);
+            }
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -22,19 +47,23 @@ public class HighScore : MonoBehaviour
     {
         int difficulty = GameManager.Instance.gameDifficulty;
 
-        if (highScores.ContainsKey(difficulty))
-        {
-            if (highScores[difficulty] < score)
-            {
-                highScores[difficulty] = score;
-                onHighScoreChanges?.Invoke(score);
-            }
-        }
-        else
-        {
-            highScores.Add(difficulty, score);
-            Debug.Log(highScores[difficulty]);
-            onHighScoreChanges?.Invoke(score);
-        }
+        //if (highScores.ContainsKey(difficulty))
+        //{
+        //    if (highScores[difficulty] < score)
+        //    {
+        //        highScores[difficulty] = score;
+        //        //onHighScoreChanges?.Invoke(score);
+        //    }
+        //    onHighScoreChanges?.Invoke(score);
+        //}
+        //else
+        //{
+        //    highScores.Add(difficulty, score);
+        //    Debug.Log(highScores[difficulty]);
+        //    onHighScoreChanges?.Invoke(score);
+        //}
+
+        CurrentHighScore = CurrentHighScore < score ? score : CurrentHighScore;
+        onHighScoreChanges?.Invoke(CurrentHighScore);
     }
 }

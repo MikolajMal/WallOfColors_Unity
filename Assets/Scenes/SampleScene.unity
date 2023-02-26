@@ -5025,6 +5025,8 @@ MonoBehaviour:
   blockGrid: {fileID: 293721812}
   highScore: {fileID: 2109131157}
   scoreText: {fileID: 62995461}
+  difficulties:
+  - {fileID: 11400000, guid: b995ea0b168333749afe5d966d721e3f, type: 2}
   currentColors: []
 --- !u!4 &2109131154
 Transform:
@@ -5068,6 +5070,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wall: {fileID: 491922028}
   grid: {fileID: 293721812}
+  highScoreScript: {fileID: 2109131157}
 --- !u!114 &2109131157
 MonoBehaviour:
   m_ObjectHideFlags: 0

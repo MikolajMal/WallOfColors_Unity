@@ -31,11 +31,7 @@ public class GameManager : MonoBehaviour
     public int levelSize = 6;
     public bool gameIsPlaying = false;
 
-    [SerializeField]
-    Transform blockGrid;
-    [SerializeField]
-    HighScore highScore;
-
+    #region Properties
     bool actionsNotBlocked = true;
     public bool ActionsNotBlocked
     {
@@ -73,7 +69,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    #endregion
+
+    [SerializeField]
+    Transform blockGrid;
+    [SerializeField]
+    HighScore highScore;
+
     public TMP_Text scoreText;
+
+    public List<ScriptableObject> difficulties = new List<ScriptableObject>();
 
     public void UpdateGameDifficulty(int newGameDifficulty)
     {

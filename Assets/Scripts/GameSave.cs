@@ -12,10 +12,12 @@ public class GameSave : MonoBehaviour
     Transform grid;
     BlockGrid blockGrid;
 
+    [SerializeField]
+    HighScore highScoreScript;
+
     Dictionary<int, GameObject> savedWalls = new Dictionary<int, GameObject>();
     Dictionary<int, GameObject> savedGrids = new Dictionary<int, GameObject>();
     Dictionary<int, int> savedScore = new Dictionary<int, int>();
-    Dictionary<int, int> savedHighScore = new Dictionary<int, int>();
 
     void Start()
     {
