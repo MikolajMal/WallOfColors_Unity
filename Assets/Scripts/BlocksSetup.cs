@@ -15,6 +15,6 @@ public class BlocksSetup : MonoBehaviour
 
     protected void SetSquareSize()
     {
-        square.GetComponent<SpriteRenderer>().size = new Vector2(blockSize, blockSize);
+        //square.GetComponent<SpriteRenderer>().size = new Vector2(blockSize, blockSize);
     }
 }
