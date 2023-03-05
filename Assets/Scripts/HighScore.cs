@@ -16,43 +16,37 @@ public class HighScore : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("TODO: make a high score saving functionality locally for every difficulty level");
-        Debug.Log("TODO: make a high score saving functionality locally");
         Debug.Log("TODO: make a high score display in main manu");
-        Debug.Log("TODO: make use of High Score Updater script in every high score display");
+
+        GameManager.Instance.OnGameDifficultyChange += UpdateHighScoreText;
     }
 
     public int CurrentHighScore
     {
         get
         {
-            int currentDifficulty = GameManager.Instance.gameDifficulty;
+            int currentDifficulty = GameManager.Instance.GameDifficulty;
             if (!highScores.ContainsKey(currentDifficulty)) highScores.Add(currentDifficulty, 0);
             return highScores[currentDifficulty];
         }
         set
         {
-            int currentDifficulty = GameManager.Instance.gameDifficulty;
-            if (highScores.ContainsKey(currentDifficulty))
-            {
-                highScores[GameManager.Instance.gameDifficulty] = value;
-            }
-            else
-            {
-                highScores.Add(currentDifficulty, value);
-                UpdateHighScoreText(value);
-            }
+            int currentDifficulty = GameManager.Instance.GameDifficulty;
+            if (highScores.ContainsKey(currentDifficulty)) highScores[GameManager.Instance.GameDifficulty] = value;
+            else highScores.Add(currentDifficulty, value);
+
+            UpdateHighScoreText();
         }
     }
 
-    void UpdateHighScoreText(int score)
+    void UpdateHighScoreText()
     {
-        highScoreText.text = score.ToString();
+        highScoreText.text = CurrentHighScore.ToString();
     }
 
     public void CheckHighScore(int score)
     {
         CurrentHighScore = CurrentHighScore < score ? score : CurrentHighScore;
-        UpdateHighScoreText(CurrentHighScore);
+        UpdateHighScoreText();
     }
 }

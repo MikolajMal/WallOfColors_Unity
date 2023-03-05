@@ -29,10 +29,10 @@ public class BlockGrid : BlocksSetup
 
         int numberOfSquares;
 
-        if (increaseBlocksAmount) numberOfBlocksOnLevel[GameManager.Instance.gameDifficulty] += increaseAmountNumberOfSquares;
-        else numberOfBlocksOnLevel[GameManager.Instance.gameDifficulty] = increaseAmountNumberOfSquares;
+        if (increaseBlocksAmount) numberOfBlocksOnLevel[GameManager.Instance.GameDifficulty] += increaseAmountNumberOfSquares;
+        else numberOfBlocksOnLevel[GameManager.Instance.GameDifficulty] = increaseAmountNumberOfSquares;
 
-        numberOfSquares = numberOfBlocksOnLevel[GameManager.Instance.gameDifficulty];
+        numberOfSquares = numberOfBlocksOnLevel[GameManager.Instance.GameDifficulty];
 
 
         for (int i = 0; i < numberOfSquares; i++)
@@ -47,7 +47,7 @@ public class BlockGrid : BlocksSetup
             } while (occupiedTiles.Contains(currentPosition));
             occupiedTiles.Add(currentPosition);
             GameObject squareObj = Instantiate(square, new Vector3(currentPosition.x, currentPosition.y), Quaternion.identity);
-            squareObj.transform.parent = transform.GetChild(GameManager.Instance.gameDifficulty);// difficultyBoardPlaceHolder[GameManager.Instance.gameDifficulty];
+            squareObj.transform.parent = transform.GetChild(GameManager.Instance.GameDifficulty);// difficultyBoardPlaceHolder[GameManager.Instance.gameDifficulty];
 
 
         }

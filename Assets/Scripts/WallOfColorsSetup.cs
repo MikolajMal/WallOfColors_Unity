@@ -22,7 +22,7 @@ public class WallOfColorsSetup : BlocksSetup
             for (int j = 0; j < 3; j++)
             {
                 GameObject squareObj = Instantiate(square, new Vector3(i, transform.position.y - j), Quaternion.identity);
-                squareObj.transform.parent = transform.GetChild(GameManager.Instance.gameDifficulty);
+                squareObj.transform.parent = transform.GetChild(GameManager.Instance.GameDifficulty);
                 if (j == 0) SetupFirstElementInColumn(squareObj);
                 column.Add(squareObj);
             }
@@ -60,7 +60,7 @@ public class WallOfColorsSetup : BlocksSetup
         
         // Creating new block
         GameObject newColorBlock = Instantiate(square, columnToUpdate[1].transform.position, Quaternion.identity);
-        newColorBlock.transform.parent = transform.GetChild(GameManager.Instance.gameDifficulty);
+        newColorBlock.transform.parent = transform.GetChild(GameManager.Instance.GameDifficulty);
         columnToUpdate.Add(newColorBlock);
 
         // Updating positions for old blocks

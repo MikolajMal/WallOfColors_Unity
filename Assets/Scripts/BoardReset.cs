@@ -16,7 +16,7 @@ public class BoardReset : MonoBehaviour
     {
         if (GameManager.Instance.gameIsPlaying)
         {
-            if (IsBoardEmpty(GameManager.Instance.gameDifficulty) && (GameManager.Instance.Score != 0))
+            if (IsBoardEmpty(GameManager.Instance.GameDifficulty) && (GameManager.Instance.Score != 0))
             {
                 blockGrid.SetupGrid(true);
             }
@@ -38,7 +38,7 @@ public class BoardReset : MonoBehaviour
 
     void ClearBoard()
     {
-        foreach (Transform block in transform.GetChild(GameManager.Instance.gameDifficulty))
+        foreach (Transform block in transform.GetChild(GameManager.Instance.GameDifficulty))
         {
             Destroy(block.gameObject);
         }

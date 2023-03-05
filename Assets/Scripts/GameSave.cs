@@ -17,12 +17,9 @@ public class GameSave : MonoBehaviour
 
     Dictionary<int, GameObject> savedWalls = new Dictionary<int, GameObject>();
     Dictionary<int, GameObject> savedGrids = new Dictionary<int, GameObject>();
-    Dictionary<int, int> savedScore = new Dictionary<int, int>();
 
     void Start()
     {
-        Debug.Log("TODO: all difficulty levels as scriptable objects...");
-
         wallOfColorsSetup = wall.GetComponent<WallOfColorsSetup>();
         blockGrid = grid.GetComponent<BlockGrid>();
     }
@@ -32,7 +29,7 @@ public class GameSave : MonoBehaviour
         GameManager.Instance.gameIsPlaying = false;
 
 
-        int actualGameDifficulty = GameManager.Instance.gameDifficulty;
+        int actualGameDifficulty = GameManager.Instance.GameDifficulty;
 
         // Saving blocks in wall
         Transform currentWall = wall.GetChild(actualGameDifficulty);
@@ -47,27 +44,20 @@ public class GameSave : MonoBehaviour
 
         savedGrids.Remove(actualGameDifficulty);
         savedGrids.Add(actualGameDifficulty, currentGrid.gameObject);
-
-        // Saving score
-        int currentScore = GameManager.Instance.Score;
-        savedScore.Remove(actualGameDifficulty);
-        savedScore.Add(actualGameDifficulty, currentScore);
     }
 
     public void RestoreGameLocally()
     {
-        int actualGameDifficulty = GameManager.Instance.gameDifficulty;
+        int actualGameDifficulty = GameManager.Instance.GameDifficulty;
         if (savedWalls.ContainsKey(actualGameDifficulty))
         {
             savedWalls[actualGameDifficulty].SetActive(true);
             savedGrids[actualGameDifficulty].SetActive(true);
-            GameManager.Instance.Score = savedScore[actualGameDifficulty];
         }
         else
         {
             wallOfColorsSetup.SetupWall();
             blockGrid.SetupGrid();
-            GameManager.Instance.Score = 0;
         }
 
         GameManager.Instance.gameIsPlaying = true;

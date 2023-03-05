@@ -21,12 +21,10 @@ public class GameManager : MonoBehaviour
         Instance = this;
 
         SetCurrentColors();
-        score.CurrentScore = 0;
     }
 
     #endregion
 
-    public int gameDifficulty = 0;
     public int levelSize = 6;
     public bool gameIsPlaying = false;
 
@@ -37,7 +35,23 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     Score score;
 
+    public Action OnGameDifficultyChange;
+
     #region Properties
+
+    int gameDifficulty = 0;
+    public int GameDifficulty
+    {
+        get => gameDifficulty;
+        set
+        {
+            gameDifficulty = value;
+            SetCurrentColors();
+            OnGameDifficultyChange?.Invoke();
+            score.UpdateScoreText();
+        }
+    }
+
     bool actionsNotBlocked = true;
     public bool ActionsNotBlocked
     {
@@ -55,12 +69,7 @@ public class GameManager : MonoBehaviour
     public int Score
     {
         get => score.CurrentScore;
-        set
-        {
-            score.CurrentScore = value;
-            highScore.CheckHighScore(score.CurrentScore);
-            score.UpdateScoreText(score.CurrentScore);
-        }
+        set => score.CurrentScore = value;
     }
 
     bool gameOver;
@@ -76,31 +85,28 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
-    public void UpdateGameDifficulty(int newGameDifficulty)
-    {
-        gameDifficulty = newGameDifficulty;
-        SetCurrentColors();
-    }
-
-    List<Color> availableColors { get; set; } = new List<Color>
-    {
-        Color.red,
-        Color.green,
-        Color.blue,
-        Color.yellow,
-        Color.cyan,
-        Color.magenta,
-        Color.gray,
-    };
+    //List<Color> availableColors { get; set; } = new List<Color>
+    //{
+    //    Color.red,
+    //    Color.green,
+    //    Color.blue,
+    //    Color.yellow,
+    //    Color.cyan,
+    //    Color.magenta,
+    //    Color.gray,
+    //};
 
 
+    public List<Color> availableColors = new List<Color>();
+
+    [HideInInspector]
     public List<Color> currentColors = new List<Color>();
 
     public void SetCurrentColors()
     {
         currentColors.Clear();
 
-        currentColors = gameDifficulty switch
+        currentColors = GameDifficulty switch
         {
             0 => availableColors.Take(2).ToList(),
             1 => availableColors.Take(3).ToList(),
@@ -121,7 +127,7 @@ public class GameManager : MonoBehaviour
 
     private bool IsPossibleToFireBlock()
     {
-        Transform currentDifficulty = blockGrid.GetChild(GameManager.Instance.gameDifficulty);
+        Transform currentDifficulty = blockGrid.GetChild(GameManager.Instance.GameDifficulty);
         int numberOfBlocks = currentDifficulty.childCount;
         int minimumNumberOfBlocksToBlockBoard = levelSize * 8;
 
@@ -134,7 +140,7 @@ public class GameManager : MonoBehaviour
                 if ((int)block.position.x == levelSize ||
                     (int)block.position.y == levelSize ||
                     (int)block.position.x == -levelSize ||
-                    (int)block.position.y == -levelSize ) numberOfBlocksAtTheBoundaryOfBoard++;
+                    (int)block.position.y == -levelSize) numberOfBlocksAtTheBoundaryOfBoard++;
             }
 
             if (numberOfBlocksAtTheBoundaryOfBoard == minimumNumberOfBlocksToBlockBoard)

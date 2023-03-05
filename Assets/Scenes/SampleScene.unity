@@ -935,7 +935,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 590c2ada8fcacd14d99f5bf7c059b711, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  square: {fileID: 4309870238872152695, guid: 9d2f29f107ea900458839abe8385bb9e, type: 3}
+  square: {fileID: 4783409980933449990, guid: a2a5e3ac2a514844daf11c93c0216a0e, type: 3}
   increaseAmountNumberOfSquares: 10
 --- !u!4 &293721812
 Transform:
@@ -1109,7 +1109,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 2109131153}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: UpdateGameDifficulty
+        m_MethodName: set_GameDifficulty
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1375,7 +1375,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 2109131153}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: UpdateGameDifficulty
+        m_MethodName: set_GameDifficulty
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1642,7 +1642,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 745393b3b996a6340b0cfa15a5192f35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  square: {fileID: 4309870238872152695, guid: 9d2f29f107ea900458839abe8385bb9e, type: 3}
+  square: {fileID: 4783409980933449990, guid: a2a5e3ac2a514844daf11c93c0216a0e, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -3059,7 +3059,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 2109131153}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: UpdateGameDifficulty
+        m_MethodName: set_GameDifficulty
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4439,7 +4439,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 2109131153}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: UpdateGameDifficulty
+        m_MethodName: set_GameDifficulty
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4985,8 +4985,8 @@ GameObject:
   - component: {fileID: 2109131153}
   - component: {fileID: 2109131155}
   - component: {fileID: 2109131156}
-  - component: {fileID: 2109131157}
   - component: {fileID: 2109131158}
+  - component: {fileID: 2109131157}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -5006,13 +5006,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b69e957b0f43d4a42836889dfc63dc54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameDifficulty: 0
   levelSize: 6
   gameIsPlaying: 0
   blockGrid: {fileID: 293721812}
   highScore: {fileID: 2109131157}
   score: {fileID: 2109131158}
-  currentColors: []
+  availableColors:
+  - {r: 0.9137255, g: 0.76862746, b: 0.41568628, a: 1}
+  - {r: 0.90588236, g: 0.43529412, b: 0.31764707, a: 1}
+  - {r: 0.16470589, g: 0.6156863, b: 0.56078434, a: 1}
+  - {r: 0.95686275, g: 0.63529414, b: 0.38039216, a: 1}
+  - {r: 0.14901961, g: 0.27450982, b: 0.3254902, a: 1}
+  currentColors:
+  - {r: 0.9137255, g: 0.76862746, b: 0.41568628, a: 0}
+  - {r: 0.90588236, g: 0.43529412, b: 0.31764707, a: 0}
+  - {r: 0.16470589, g: 0.6156863, b: 0.56078434, a: 0}
+  - {r: 0.95686275, g: 0.63529414, b: 0.38039216, a: 0}
+  - {r: 0.14901961, g: 0.27450982, b: 0.3254902, a: 0}
 --- !u!4 &2109131154
 Transform:
   m_ObjectHideFlags: 0
@@ -5040,7 +5050,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aef950517daaecf4f97a4da1e337157c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  square: {fileID: 4309870238872152695, guid: 9d2f29f107ea900458839abe8385bb9e, type: 3}
+  square: {fileID: 4783409980933449990, guid: a2a5e3ac2a514844daf11c93c0216a0e, type: 3}
 --- !u!114 &2109131156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5082,3 +5092,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 62995461}
+  highScore: {fileID: 2109131157}
