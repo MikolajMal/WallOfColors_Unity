@@ -11,7 +11,7 @@ public class HighScore : MonoBehaviour
     [SerializeField]
     TMP_Text highScoreText;
 
-    Dictionary<int, int> highScores = new Dictionary<int, int>();
+    public Dictionary<int, int> highScores = new Dictionary<int, int>();
 
     // Start is called before the first frame update
     void Start()
