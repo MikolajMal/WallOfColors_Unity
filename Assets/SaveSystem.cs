@@ -8,8 +8,11 @@ public class SaveSystem : MonoBehaviour
 {
     [SerializeField]
     HighScore highScore;
+    [SerializeField]
+    Score score;
 
-    GameData gameData;
+    [SerializeField]
+    BlockGrid blockGridScript;
 
     BinaryFormatter formatter = new BinaryFormatter();
 
@@ -23,7 +26,7 @@ public class SaveSystem : MonoBehaviour
 
     void SaveGame()
     {
-        GameData gameData = new GameData(highScore);
+        GameData gameData = new GameData(highScore, score, blockGridScript);
 
         using (FileStream stream = new FileStream(path, FileMode.Create))
         {
@@ -38,8 +41,11 @@ public class SaveSystem : MonoBehaviour
             using (FileStream stream = new FileStream(path, FileMode.Open))
             {
                 GameData gameData = formatter.Deserialize(stream) as GameData;
-                
+
                 highScore.highScores = gameData.highScores;
+                score.scores = gameData.scores;
+
+                blockGridScript.numberOfBlocksOnLevel = gameData.numberOfBlocksOnLevel;
             }
         }
         else

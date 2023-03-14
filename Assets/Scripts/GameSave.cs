@@ -62,23 +62,4 @@ public class GameSave : MonoBehaviour
 
         GameManager.Instance.gameIsPlaying = true;
     }
-
-    //private void ClearBoard()
-    //{
-    //    List<GameObject> blocksToDestroy = new List<GameObject>();
-    //    foreach (GameObject block in savedWalls[GameManager.Instance.gameDifficulty].transform)
-    //    {
-    //        blocksToDestroy.Add(block);
-    //    }
-
-    //    foreach (GameObject block in savedGrids[GameManager.Instance.gameDifficulty].transform)
-    //    {
-    //        blocksToDestroy.Add(block);
-    //    }
-
-    //    foreach (GameObject block in blocksToDestroy)
-    //    {
-    //        Destroy(block);
-    //    }
-    //}
 }

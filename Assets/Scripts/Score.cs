@@ -11,12 +11,11 @@ public class Score : MonoBehaviour
     [SerializeField]
     HighScore highScore;
 
-    Dictionary<int, int> scores = new Dictionary<int, int>();
+    public Dictionary<int, int> scores = new Dictionary<int, int>();
 
     private void Start()
     {
         GameManager.Instance.OnGameDifficultyChange += UpdateScoreText;
-        CurrentScore = 0;
     }
 
     public int CurrentScore

@@ -31,6 +31,7 @@ public class BoardReset : MonoBehaviour
 
         ClearBoard();
 
+        blockGrid.numberOfBlocksOnLevel[GameManager.Instance.GameDifficulty] = blockGrid.increaseAmountNumberOfSquares;
         blockGrid.SetupGrid();
 
         GameManager.Instance.ActionsNotBlocked = true;

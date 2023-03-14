@@ -7,17 +7,18 @@ public class BlockGrid : BlocksSetup
 
     List<Vector2> occupiedTiles = new List<Vector2>();
 
-    Dictionary<int, int> numberOfBlocksOnLevel = new Dictionary<int, int>();
+    public Dictionary<int, int> numberOfBlocksOnLevel = new Dictionary<int, int>();
 
     protected override void Start()
     {
         base.Start();
 
-        numberOfBlocksOnLevel.Clear();
-
         for (int i = 0; i < transform.childCount; i++)
         {
-            numberOfBlocksOnLevel.Add(i, increaseAmountNumberOfSquares);
+            if (!numberOfBlocksOnLevel.ContainsKey(i))
+            {
+                numberOfBlocksOnLevel.Add(i, increaseAmountNumberOfSquares);
+            }
         }
     }
 
@@ -30,7 +31,11 @@ public class BlockGrid : BlocksSetup
         int numberOfSquares;
 
         if (increaseBlocksAmount) numberOfBlocksOnLevel[GameManager.Instance.GameDifficulty] += increaseAmountNumberOfSquares;
-        else numberOfBlocksOnLevel[GameManager.Instance.GameDifficulty] = increaseAmountNumberOfSquares;
+        else
+        {
+            if (numberOfBlocksOnLevel[GameManager.Instance.GameDifficulty] <= increaseAmountNumberOfSquares)
+                numberOfBlocksOnLevel[GameManager.Instance.GameDifficulty] = increaseAmountNumberOfSquares;
+        }
 
         numberOfSquares = numberOfBlocksOnLevel[GameManager.Instance.GameDifficulty];
 
