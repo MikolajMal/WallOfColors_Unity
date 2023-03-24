@@ -93,6 +93,8 @@ public class BlockShooter : MonoBehaviour
 
             CalculateScore(matchingBlocksCount);
 
+            AudioManager.Instance.Play("ScoreIncrease");
+
             Destroy(this.gameObject);
             return;
         }
@@ -157,6 +159,8 @@ public class BlockShooter : MonoBehaviour
     private void OnMouseDown()
     {
         if (blockClicked || !GameManager.Instance.ActionsNotBlocked) return;
+
+        AudioManager.Instance.Play("BlockClick");
 
         blockCollider.enabled = false;
 
