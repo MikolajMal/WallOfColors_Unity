@@ -8,7 +8,7 @@ public class BlockShooter : MonoBehaviour
 {
     bool blockClicked;
     Collider2D blockCollider;
-    float speed = 20f;
+    float speed = 10f;
     float checkingRayLength = .6f;
     Block blockScript;
     Color currentColor;

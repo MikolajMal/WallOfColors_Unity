@@ -20,11 +20,12 @@ public class SaveSystem : MonoBehaviour
 
     private void Awake()
     {
-        path = Application.persistentDataPath + "/saved.game";
+        path = Application.persistentDataPath +  "/saved.game";
         LoadGame();
+        StartCoroutine(SaveGameCoroutine());
     }
 
-    void SaveGame()
+    public void SaveGame()
     {
         GameData gameData = new GameData(highScore, score, blockGridScript);
 
@@ -54,8 +55,27 @@ public class SaveSystem : MonoBehaviour
         }
     }
 
-    private void OnApplicationQuit()
+    IEnumerator SaveGameCoroutine()
     {
-        SaveGame();
+        while (true)
+        {
+            yield return new WaitForSeconds(2.0f);
+            SaveGame();
+        }
     }
+
+    //private void OnApplicationQuit()
+    //{
+    //    SaveGame();
+    //}
+
+    //private void OnApplicationPause(bool pause)
+    //{
+    //    SaveGame();
+    //}
+
+    //private void OnApplicationFocus(bool focus)
+    //{
+    //    SaveGame();
+    //}
 }
